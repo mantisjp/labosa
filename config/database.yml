@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch('POSTGRES_USER') { 'root' } %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'password' } %>
+  host: db
+
+development:
+  <<: *default
+  database: labosa_development
+
+test:
+  <<: *default
+  database: labosa_test
