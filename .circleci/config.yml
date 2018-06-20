@@ -1,27 +1,28 @@
 version: 2
 jobs:
-  working_directory: ~/labosa
-  machine:
-  image:
-  steps:
-    - checkout
-    - run:
-      name: build db image
-      command: |
-        docker-compose build db
-        docker-compose up -d db
-    - run:
-      name: build app image
-      command: |
-        docker-compose build app
-        docker-compose up -d app
-        docker-compose exec app bundle install
-    - run:
-      name: build web image
-      command: |
-        docker-compose build web
-        docker-compose up -d web
-  #
-    - run:
-      name: rspec
-      command: docker-compose exec app rspec
+  build:
+    working_directory: ~/labosa
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+        name: build db image
+        command: |
+          docker-compose build db
+          docker-compose up -d db
+      - run:
+        name: build app image
+        command: |
+          docker-compose build app
+          docker-compose up -d app
+          docker-compose exec app bundle install
+      - run:
+        name: build web image
+        command: |
+          docker-compose build web
+          docker-compose up -d web
+    # テスト実行
+      - run:
+        name: rspec
+        command: docker-compose exec app rspec
