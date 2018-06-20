@@ -16,7 +16,7 @@ jobs:
           command: |
             docker-compose build app
             docker-compose up -d app
-            docker-compose exec app bundle install
+            docker-compose exec app bundle install --with development test
       - run:
           name: build web image
           command: |
