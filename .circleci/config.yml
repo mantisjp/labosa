@@ -25,4 +25,4 @@ jobs:
     # テスト実行
       - run:
           name: rspec
-          command: docker-compose run rails bundle exec rspec
+          command: docker-compose run app bundle exec rspec
