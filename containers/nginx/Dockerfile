@@ -1,12 +1,7 @@
-FROM nginx
+FROM nginx:stable
 
-# インクルード用のディレクトリ内を削除
-RUN rm -f /etc/nginx/conf.d/*
-
-# Nginxの設定ファイルをコンテナにコピー
-ADD nginx.conf /etc/nginx/conf.d/labosa.conf
-
-# ビルド完了後にNginxを起動
-CMD /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
