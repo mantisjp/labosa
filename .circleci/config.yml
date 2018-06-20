@@ -7,22 +7,22 @@ jobs:
     steps:
       - checkout
       - run:
-        name: build db image
-        command: |
-          docker-compose build db
-          docker-compose up -d db
+          name: build db image
+          command: |
+            docker-compose build db
+            docker-compose up -d db
       - run:
-        name: build app image
-        command: |
-          docker-compose build app
-          docker-compose up -d app
-          docker-compose exec app bundle install
+          name: build app image
+          command: |
+            docker-compose build app
+            docker-compose up -d app
+            docker-compose exec app bundle install
       - run:
-        name: build web image
-        command: |
-          docker-compose build web
-          docker-compose up -d web
+          name: build web image
+          command: |
+            docker-compose build web
+            docker-compose up -d web
     # テスト実行
       - run:
-        name: rspec
-        command: docker-compose exec app rspec
+          name: rspec
+          command: docker-compose exec app rspec
