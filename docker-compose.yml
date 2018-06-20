@@ -27,12 +27,13 @@ services:
       POSTGRES_PASSWORD: mantis
   web:
     build:
-      context: containers/nginx
+      context: containers/nginx/
     volumes:
       - public-data:/labosa/public
       - tmp-data:/labosa/tmp
-    ports:
-      - 8080:80
+    environment:
+      VIRTUAL_HOST: local-labosa.docker
+      VIRTUAL_PORT: 80
     depends_on:
       - app
 volumes:
