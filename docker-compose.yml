@@ -11,6 +11,7 @@ services:
       - public-data:/labosa/public
       - tmp-data:/labosa/tmp
       - log-data:/labosa/log
+      - bundle_install:/usr/local/bundle
     depends_on:
       - db
   db:
@@ -31,7 +32,7 @@ services:
       - public-data:/labosa/public
       - tmp-data:/labosa/tmp
     ports:
-      - 80:80
+      - 8080:80
     depends_on:
       - app
 volumes:
@@ -39,3 +40,4 @@ volumes:
   tmp-data:
   log-data:
   db-data:
+  bundle_install:
