@@ -3,8 +3,7 @@ jobs:
   build:
     working_directory: ~/labosa
     machine:
-      ruby:
-        version: 2.5.1
+      image: circleci/classic:edge
     steps:
       - checkout
       - run:
